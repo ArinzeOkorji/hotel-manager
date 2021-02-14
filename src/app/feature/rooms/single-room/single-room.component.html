@@ -1,0 +1,14 @@
+<mat-card>
+    <mat-card-content>
+        <mat-card-title>{{room?.roomName}} (room {{room?.roomNumber}})</mat-card-title>
+        <div>
+            <b>Price / Night: </b> {{room?.roomPrice}} <span>({{room?.tier}})</span>
+        </div>
+        <div>
+            <b>Services:</b>
+            <mat-list flexLayout='row'>
+                <mat-list-item *ngFor='let service of room?.service'> {{service}} </mat-list-item>
+            </mat-list>
+        </div>
+    </mat-card-content>
+</mat-card>

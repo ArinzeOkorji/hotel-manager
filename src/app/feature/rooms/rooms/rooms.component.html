@@ -1,0 +1,13 @@
+<div class='mat-header' fxLayout='row' fxLayoutAlign='space-between center'>
+    <div class='mat-h2'>All Rooms</div>
+    <button mat-flat-button color="primary" (click)='addNewRoom()'>
+    Add room
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<mat-divider></mat-divider>
+
+<div gdColumns='1fr 1fr 1fr' gdColumns.md='1fr 1fr' gdColumns.lt-md='1fr' gdGap='10px'>
+    <app-single-room *ngFor='let room of roomsList' [room]='room'></app-single-room>
+</div>

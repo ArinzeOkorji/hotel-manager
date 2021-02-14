@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>Add New Customer</h2>
+
+<mat-dialog-content>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+        <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input required matInput type="type" name='firstName' ngModel>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input required matInput type="type" name='lastName' ngModel>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Room Name</mat-label>
+            <mat-select name='room' (ngModelChange)='calculateSum()' [(ngModel)]='selectedRoom' required>
+                <mat-option *ngFor="let room of roomsList" [value]='room'>
+                    {{room?.roomName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Duration of stay</mat-label>
+            <mat-date-range-input required [rangePicker]="picker">
+                <input required matStartDate #checkIn='ngModel' name="checkIn" ngModel placeholder="Checkin date">
+                <input (dateChange)='calculateSum(form.value)' required matEndDate #checkOut='ngModel' name="checkOut" ngModel placeholder="Checkout date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+
+            <mat-error *ngIf="checkIn.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+            <mat-error *ngIf="checkOut.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+        </mat-form-field>
+        <div *ngIf='sumTotal'>
+            <div fxLayout='row' fxLayoutAlign='space-between center'>
+                <i>Price per night:</i>
+                <b>{{selectedRoom?.roomPrice |currency:'NGN'}}</b>
+            </div>
+            <div fxLayout='row' fxLayoutAlign='space-between center'>
+                <i>Number of nights:</i>
+                <b>{{diffDays}}</b>
+            </div>
+            <div fxLayout='row' fxLayoutAlign='space-between center'>
+                <i>Total:</i>
+                <b>{{sumTotal |currency:'NGN'}}</b>
+            </div>
+        </div>
+        <div mat-dialog-actions>
+            <button mat-button color="warn" (click)="closeModal()">Cancel</button>
+            <button mat-flat-button color="primary" [disabled]='form.invalid' type="submit">Create</button>
+        </div>
+    </form>
+</mat-dialog-content>

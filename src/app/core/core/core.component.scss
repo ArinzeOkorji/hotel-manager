@@ -1,0 +1,22 @@
+mat-sidenav-container {
+    height: 100vh;
+}
+
+mat-list-item {
+    cursor: pointer;
+    outline: none;
+}
+
+.active {
+    color: #fff;
+    background-color: #3F51B5;
+}
+
+h1 {
+    margin-left: 8px;
+}
+
+.container {
+    padding-left: 16px;
+    padding-right: 16px;
+}

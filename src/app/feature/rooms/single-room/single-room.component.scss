@@ -1,0 +1,11 @@
+mat-card-content {
+    >div {
+        margin-top: 15px;
+    }
+    .mat-list-item-content {
+        padding: 0 !important;
+    }
+    mat-list {
+        display: flex;
+    }
+}

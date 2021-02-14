@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Add New Room</h2>
+
+<mat-dialog-content>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+        <mat-form-field>
+            <mat-label>Room Name</mat-label>
+            <input required matInput name='roomName' ngModel>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Room Number</mat-label>
+            <input required matInput type="number" name='roomNumber' ngModel>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Tier</mat-label>
+            <mat-select name='tier' ngModel required>
+                <mat-option *ngFor="let tier of tiers" [value]="tier.name">
+                    {{tier.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Price/night</mat-label>
+            <input required matInput type="number" name='roomPrice' ngModel>
+        </mat-form-field>
+        <span class="example-list-section">
+          <h3>Services</h3>
+      <mat-selection-list required ngModel name='service'>
+        <mat-list-option *ngFor="let service of services" [value]='service.name'>
+          {{service.name}}
+        </mat-list-option>
+      </mat-selection-list>
+    </span>
+        <div mat-dialog-actions>
+            <button mat-button color="warn" (click)="closeModal()">Cancel</button>
+            <button mat-flat-button color="primary" [disabled]='form.invalid' type="submit">Create</button>
+        </div>
+    </form>
+</mat-dialog-content>
